@@ -17,3 +17,31 @@
 - Удаление товара из пустой корзины — ошибка
 - Операции с несуществующей корзиной — ошибка
 - Точность BigDecimal при расчёте суммы (копейки)
+
+---
+
+## Веер вариантов (b–e) — per-variant подсказки
+
+### B — гонка add/update/remove одной корзины (ShoppingCartServiceB)
+- K потоков × addProduct(cart, P, 1) одновременно → итоговое quantity позиции == K (нет lost-update).
+- Параллельно add(P) и remove(P) → нет «товара-призрака» и нет NPE/ConcurrentModification.
+- calculateTotal во время параллельных записей → консистентный снимок (не падает, не считает «рваное» состояние).
+- Много итераций стресса (гонки флаки).
+
+### C — гонка склада на checkout (ShoppingCartServiceC)
+- setStock(P,1); две корзины с P checkout одновременно → ровно 1 успех, 1 × IllegalStateException; сток НЕ отрицательный.
+- Мультитоварная корзина: не хватает одной позиции → весь checkout откатан, сток остальных позиций не тронут (или корректно возвращён).
+- setStock(P,N); N потоков → ровно N успешных checkout, N+1-й падает.
+- Цена в Order зафиксирована на момент checkout.
+
+### D — идемпотентный checkout (ShoppingCartServiceD)
+- Дважды checkout(cart, requestId) с одним requestId → один и тот же Order, списание ровно одно.
+- Гонка: два потока, один requestId → один Order, оба его получают.
+- Разные requestId на одной корзине — второй должен быть ошибкой (корзина уже оформлена/пуста), а не второй заказ.
+
+### E — edge/пустая/точность (ShoppingCartServiceE)
+- calculateTotal пустой корзины == 0 (0.00, правильный scale).
+- checkout/операции на пустой и несуществующей корзине — IllegalArgumentException.
+- quantity<=0, price<=0, null product, null cartId — ошибки.
+- updateQuantity(...,0) — зафиксировать правило (удаление позиции ИЛИ ошибка) и проверить.
+- Точность: price=0.10 × 3 == 0.30 ровно (BigDecimal, без double); суммирование копеек без потерь.
