@@ -15,6 +15,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task12_bank_account/BankAccountService.java
  * java -cp src/main/java com.practice.task12_bank_account.BankAccountService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить; ЭТО КЛАССИКА ГОНОК, твоя зона):</b></p>
+ * <ul>
+ *   <li><b>⭐⭐ Конкурентные debit/withdraw:</b> lost-update баланса, овердрафт при гонке (двое сняли по остатку). Атомарно: CAS/лок на счёт, проверка-и-списание под защитой.</li>
+ *   <li><b>⭐ Transfer = ДВА счёта под защитой:</b> lock-ordering (по id счёта) против deadlock; атомарность (оба или ни одного); идемпотентность транзакции (ключ, против double-apply).</li>
+ * </ul>
  */
 public class BankAccountService {
 

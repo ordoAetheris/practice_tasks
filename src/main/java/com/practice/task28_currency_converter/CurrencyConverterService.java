@@ -39,6 +39,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task28_currency_converter/CurrencyConverterService.java
  * java -cp src/main/java com.practice.task28_currency_converter.CurrencyConverterService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Thread-safety курсов:</b> concurrent update + convert → неконсистентный курс (снапшот пары атомарно); BigDecimal для денег (не double), режим округления.</li>
+ *   <li><b>Лучший курс через промежуточную</b> = граф-поиск (best A→*→B, аналог shortest-path на -log(rate)); edge (неизвестная валюта, цикл кросс-курсов, обратный курс).</li>
+ * </ul>
  */
 public class CurrencyConverterService {
 

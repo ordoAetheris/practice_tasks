@@ -30,6 +30,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task03_user_registration/UserRegistrationService.java
  * java -cp src/main/java com.practice.task03_user_registration.UserRegistrationService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка уникальности:</b> два потока регистрируют один login/email одновременно → «check-then-insert» пропускает дубль. Атомарно: putIfAbsent / уникальный индекс под локом.</li>
+ *   <li>Нормализация email/login (регистр, пробелы) перед проверкой уникальности; edge валидации.</li>
+ * </ul>
  */
 public class UserRegistrationService {
 

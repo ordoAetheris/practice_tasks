@@ -16,6 +16,12 @@ import java.time.*;
  * javac src/main/java/com/practice/task14_hotel_reservation/HotelReservationService.java
  * java -cp src/main/java com.practice.task14_hotel_reservation.HotelReservationService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Double-booking на пересекающиеся даты:</b> база «нельзя пересечение», но под 2 потоками разом → оба забронировали. Атомарность проверки-доступности+брони (TOCTOU) под локом на комнату.</li>
+ *   <li>Корректное пересечение диапазонов дат (interval overlap); идемпотентность.</li>
+ * </ul>
  */
 public class HotelReservationService {
 

@@ -40,6 +40,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task26_review_service/ReviewService.java
  * java -cp src/main/java com.practice.task26_review_service.ReviewService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ One-review-per-user под конкуррентой</b> (два отзыва при гонке — putIfAbsent на (product,user)); <b>гонка агрегата рейтинга</b> (concurrent reviews → lost-update среднего) — инкрементальный consistent-подсчёт под защитой.</li>
+ *   <li>Эффективный Top-N по среднему (heap, не полная сортировка); пересчёт среднего при смене статуса ACTIVE↔DELETED.</li>
+ * </ul>
  */
 public class ReviewService {
 

@@ -15,6 +15,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task19_file_storage/FileStorageService.java
  * java -cp src/main/java com.practice.task19_file_storage.FileStorageService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Thread-safety дерева:</b> конкурентные move/create по одному пути → гонка (родитель удалён, пока перемещаем); consistency рекурсивного размера при конкурентной модификации.</li>
+ *   <li><b>Цикл при move</b> (папку в саму себя/потомка — детект); edge (перемещение в несуществующее, глубокая рекурсия → итеративный обход).</li>
+ * </ul>
  */
 public class FileStorageService {
 

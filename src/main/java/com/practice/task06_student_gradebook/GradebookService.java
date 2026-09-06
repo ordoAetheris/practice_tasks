@@ -30,6 +30,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task06_student_gradebook/GradebookService.java
  * java -cp src/main/java com.practice.task06_student_gradebook.GradebookService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Thread-safety</b> выставления оценок + расчёт среднего под конкуррентой (консистентный снапшот, не «грязное» среднее); edge (нет оценок → среднее?).</li>
+ *   <li>Эффективный рейтинг (topK через heap, не полная сортировка каждый раз).</li>
+ * </ul>
  */
 public class GradebookService {
 

@@ -15,6 +15,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task15_warehouse/WarehouseService.java
  * java -cp src/main/java com.practice.task15_warehouse.WarehouseService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить; инвентарная гонка, близко к твоей зоне):</b></p>
+ * <ul>
+ *   <li><b>⭐⭐ Гонка прихода/расхода:</b> конкурентный расход → остаток в минус / oversell (lost-update). Атомарно: CAS/лок на позицию, проверка-остатка-и-списание под защитой.</li>
+ *   <li>Идемпотентность движения (double-apply); консистентность истории с остатком (атомарно: остаток + запись в историю вместе).</li>
+ * </ul>
  */
 public class WarehouseService {
 

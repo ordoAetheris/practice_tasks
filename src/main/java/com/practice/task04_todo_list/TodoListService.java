@@ -29,6 +29,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task04_todo_list/TodoListService.java
  * java -cp src/main/java com.practice.task04_todo_list.TodoListService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Гонка перехода статуса</b> (два update разом → невалидный переход); атомарность + проверка допустимости ВНУТРИ критической секции.</li>
+ *   <li>Thread-safety коллекции задач (CHM/лок); эффективная фильтрация по статусу/приоритету (индекс, не скан).</li>
+ * </ul>
  */
 public class TodoListService {
 

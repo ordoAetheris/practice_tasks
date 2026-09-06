@@ -16,6 +16,12 @@ import java.time.*;
  * javac src/main/java/com/practice/task17_subscription_manager/SubscriptionManagerService.java
  * java -cp src/main/java com.practice.task17_subscription_manager.SubscriptionManagerService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка состояния:</b> renew + cancel одновременно → невалидное состояние/двойное списание. Атомарный переход под защитой; идемпотентность billing (ключ, против double-charge).</li>
+ *   <li>Trial→paid переход; edge (продление отменённой, отмена уже отменённой); проверка истечения (при обращении vs таймер).</li>
+ * </ul>
  */
 public class SubscriptionManagerService {
 

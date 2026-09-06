@@ -16,6 +16,13 @@ import java.util.*;
  * javac src/main/java/com/practice/task11_parking_lot/ParkingLotService.java
  * java -cp src/main/java com.practice.task11_parking_lot.ParkingLotService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — интервьюер додавливает, дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка парковки (thread-safety):</b> два авто на одно свободное место одновременно → оба припарковались.
+ *       Атомарно занять: CAS occupied false→true / лок. Не «нашёл, потом занял» (TOCTOU) — атомарно найти+занять.</li>
+ *   <li><b>Полный этаж под конкуррентой</b> (последнее место двум); уникальность тикета.</li>
+ * </ul>
  */
 public class ParkingLotService {
 

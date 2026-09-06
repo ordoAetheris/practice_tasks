@@ -28,6 +28,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task08_movie_collection/MovieCollectionService.java
  * java -cp src/main/java com.practice.task08_movie_collection.MovieCollectionService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Thread-safety</b> + гонка агрегата рейтинга (concurrent-rating → lost-update среднего); индекс по жанру для фильтрации O(1).</li>
+ *   <li>Edge: границы рейтинга/года (база покрывает); пустой результат фильтра.</li>
+ * </ul>
  */
 public class MovieCollectionService {
 

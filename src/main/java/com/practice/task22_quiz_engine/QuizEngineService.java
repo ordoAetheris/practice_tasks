@@ -37,6 +37,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task22_quiz_engine/QuizEngineService.java
  * java -cp src/main/java com.practice.task22_quiz_engine.QuizEngineService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Гонка answer + finish:</b> ответ приходит в момент завершения попытки → атомарность (после finish ответы отклоняются под защитой).</li>
+ *   <li>Thread-safety состояния попытки; консистентный расчёт статистики под конкурентными попытками; таймер на попытку (авто-finish по времени).</li>
+ * </ul>
  */
 public class QuizEngineService {
 

@@ -43,6 +43,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task25_delivery_tracker/DeliveryTrackerService.java
  * java -cp src/main/java com.practice.task25_delivery_tracker.DeliveryTrackerService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка обновления статуса:</b> два update разом → пропуск статуса / невалидный порядок. Атомарный переход + проверка допустимости (строгий FSM) ВНУТРИ критической секции.</li>
+ *   <li>Атомарность «статус + событие в историю» (вместе или никак); идемпотентность повторного статуса.</li>
+ * </ul>
  */
 public class DeliveryTrackerService {
 

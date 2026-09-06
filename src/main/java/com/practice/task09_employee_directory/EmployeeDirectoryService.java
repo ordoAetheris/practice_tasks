@@ -30,6 +30,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task09_employee_directory/EmployeeDirectoryService.java
  * java -cp src/main/java com.practice.task09_employee_directory.EmployeeDirectoryService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка кадровых операций:</b> fire + transfer/salary-change одновременно → правка уволенного / невалидное состояние. Атомарный переход под защитой (как FSM статуса).</li>
+ *   <li>Аналитика по отделам под конкуррентой (консистентный снапшот); индекс department→employees для быстрых выборок.</li>
+ * </ul>
  */
 public class EmployeeDirectoryService {
 

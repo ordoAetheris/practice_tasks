@@ -16,6 +16,12 @@ import java.time.*;
  * javac src/main/java/com/practice/task13_flight_booking/FlightBookingService.java
  * java -cp src/main/java com.practice.task13_flight_booking.FlightBookingService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Конкурентная бронь последнего места → overbooking:</b> атомарно занять место (CAS счётчика/статуса); TOCTOU «проверил свободно → занял».</li>
+ *   <li>Expiry брони; идемпотентность бронирования; гонка cancel+book.</li>
+ * </ul>
  */
 public class FlightBookingService {
 

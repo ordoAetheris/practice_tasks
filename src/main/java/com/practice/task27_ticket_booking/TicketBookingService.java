@@ -41,6 +41,14 @@ import java.util.*;
  * javac src/main/java/com/practice/task27_ticket_booking/TicketBookingService.java
  * java -cp src/main/java com.practice.task27_ticket_booking.TicketBookingService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — интервьюер додавливает, дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Double-booking (thread-safety):</b> база говорит «нельзя занятое место», но под 2 потоками разом → оба «успели».
+ *       Атомарно застолбить: CAS статуса места FREE→RESERVED / лок на место. Классика №1.</li>
+ *   <li><b>Активный expiry брони:</b> база — «проверка при оплате, не таймер»; усложнение — авто-release по таймеру/планировщику через 15 мин.</li>
+ *   <li><b>Идемпотентная оплата</b> (double-pay); overbooking под конкуррентой; гранулярность замка — на МЕСТО, не на событие.</li>
+ * </ul>
  */
 public class TicketBookingService {
 

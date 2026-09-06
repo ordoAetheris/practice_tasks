@@ -27,6 +27,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task05_phone_book/PhoneBookService.java
  * java -cp src/main/java com.practice.task05_phone_book.PhoneBookService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка глобальной уникальности номера:</b> два add с одним номером разом → дубль. Атомарно: putIfAbsent на индексе номеров.</li>
+ *   <li>Индекс по номеру для O(1) поиска (наивно O(n)); нормализация номера перед проверкой.</li>
+ * </ul>
  */
 public class PhoneBookService {
 

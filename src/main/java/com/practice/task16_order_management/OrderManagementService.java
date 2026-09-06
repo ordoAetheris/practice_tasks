@@ -15,6 +15,13 @@ import java.util.*;
  * javac src/main/java/com/practice/task16_order_management/OrderManagementService.java
  * java -cp src/main/java com.practice.task16_order_management.OrderManagementService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — интервьюер додавливает, дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка перехода статуса (thread-safety):</b> pay() и cancel() одновременно → невалидное/двойное состояние.
+ *       Атомарный переход под защитой + проверка допустимости (FSM) ВНУТРИ критической секции. Оптимистичная блокировка (version).</li>
+ *   <li><b>Валидность перехода:</b> запрет CREATED→DELIVERED и пр.; идемпотентность повторного перехода (double-pay/double-cancel).</li>
+ * </ul>
  */
 public class OrderManagementService {
 

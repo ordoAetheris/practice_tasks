@@ -34,6 +34,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task21_notification_service/NotificationService.java
  * java -cp src/main/java com.practice.task21_notification_service.NotificationService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Гонка перехода статуса</b> (PENDING→SENT + mark-READ разом); атомарность; idempotent send (не отправить дважды).</li>
+ *   <li><b>Дедуп</b> (не слать одинаковое N раз/24ч — реальная Яндекс-тема); <b>async отправка через worker-pool + graceful shutdown</b>; пагинация консистентна под конкурентной вставкой.</li>
+ * </ul>
  */
 public class NotificationService {
 

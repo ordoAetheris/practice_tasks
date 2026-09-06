@@ -30,6 +30,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task10_recipe_book/RecipeBookService.java
  * java -cp src/main/java com.practice.task10_recipe_book.RecipeBookService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Thread-safety</b> при конкурентном доступе (read-heavy → CHM / immutable рецепты).</li>
+ *   <li>Эффективный «поиск по доступным ингредиентам» (индекс ingredient→recipes, не скан всех рецептов); edge (пустой список ингредиентов).</li>
+ * </ul>
  */
 public class RecipeBookService {
 

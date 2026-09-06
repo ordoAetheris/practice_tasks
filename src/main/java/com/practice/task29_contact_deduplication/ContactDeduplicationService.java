@@ -38,6 +38,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task29_contact_deduplication/ContactDeduplicationService.java
  * java -cp src/main/java com.practice.task29_contact_deduplication.ContactDeduplicationService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка merge:</b> два merge одного контакта параллельно → потеря/дубль/сирота-ссылка; атомарность find-duplicates+merge; идемпотентность merge.</li>
+ *   <li>Индекс по email/phone для O(1) поиска дублей (наивно O(n²)); нормализация (регистр/пробелы/формат телефона).</li>
+ * </ul>
  */
 public class ContactDeduplicationService {
 

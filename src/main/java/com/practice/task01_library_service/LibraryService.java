@@ -30,6 +30,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task01_library_service/LibraryService.java
  * java -cp src/main/java com.practice.task01_library_service.LibraryService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка выдачи последнего экземпляра:</b> база «нельзя выдать без свободных», но под 2 потоками разом → оба выдали (overissue). Атомарно: CAS/лок на доступные копии, проверка-и-декремент под защитой.</li>
+ *   <li>Идемпотентность выдачи/возврата; edge (возврат не-выданной, двойной возврат).</li>
+ * </ul>
  */
 public class LibraryService {
 

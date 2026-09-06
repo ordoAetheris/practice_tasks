@@ -16,6 +16,12 @@ import java.time.*;
  * javac src/main/java/com/practice/task20_coupon_service/CouponService.java
  * java -cp src/main/java com.practice.task20_coupon_service.CouponService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Double-redeem:</b> лимитированный купон применяют 2 потока разом → оба использовали (over-redeem). Атомарно: CAS/лок на счётчик использований, проверка-лимита-и-декремент под защитой.</li>
+ *   <li>Идемпотентность применения (тот же юзер дважды); expiry; edge (применение деактивированного/просроченного).</li>
+ * </ul>
  */
 public class CouponService {
 

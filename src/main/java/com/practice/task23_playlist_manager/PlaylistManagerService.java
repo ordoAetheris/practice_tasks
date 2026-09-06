@@ -39,6 +39,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task23_playlist_manager/PlaylistManagerService.java
  * java -cp src/main/java com.practice.task23_playlist_manager.PlaylistManagerService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Гонка на упорядоченном списке:</b> конкурентные add/remove/move → сдвиг индексов, некорректная позиция. Атомарность операции над плейлистом (лок на плейлист); dup-check (по id) под защитой.</li>
+ *   <li>Индекс artist→tracks для поиска во всех плейлистах (не скан); shuffle детерминизм в тесте (seed).</li>
+ * </ul>
  */
 public class PlaylistManagerService {
 

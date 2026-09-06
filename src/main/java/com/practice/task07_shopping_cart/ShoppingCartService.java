@@ -31,6 +31,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task07_shopping_cart/ShoppingCartService.java
  * java -cp src/main/java com.practice.task07_shopping_cart.ShoppingCartService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Thread-safety:</b> конкурентные add / update-quantity одной корзины → гонка на quantity/total (lost-update); атомарность позиции.</li>
+ *   <li>Checkout под конкуррентой: цена/наличие могли измениться (проверка на момент оформления); идемпотентность checkout.</li>
+ * </ul>
  */
 public class ShoppingCartService {
 

@@ -16,6 +16,12 @@ import java.time.*;
  * javac src/main/java/com/practice/task18_voting_system/VotingSystemService.java
  * java -cp src/main/java com.practice.task18_voting_system.VotingSystemService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐⭐ Гонка счётчика голосов:</b> конкурентные голоса → lost-update на count (классика counter-race). Атомарно: AtomicLong / CAS / лок на вариант.</li>
+ *   <li><b>One-vote-per-user под конкуррентой</b> (двойной голос при гонке — putIfAbsent на (poll,user)); гонка голос+закрытие опроса (граница).</li>
+ * </ul>
  */
 public class VotingSystemService {
 

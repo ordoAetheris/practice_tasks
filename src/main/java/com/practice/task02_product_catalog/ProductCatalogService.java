@@ -25,6 +25,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task02_product_catalog/ProductCatalogService.java
  * java -cp src/main/java com.practice.task02_product_catalog.ProductCatalogService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li><b>Структура под быстрый lookup:</b> инвертированный индекс category→products (Map), не скан O(n) — это и есть «подумайте о структурах».</li>
+ *   <li>Thread-safety, если каталог меняется ПОСЛЕ init() (concurrent read+modify); если immutable-after-init — обосновать безопасную публикацию (final/volatile).</li>
+ * </ul>
  */
 public class ProductCatalogService {
 

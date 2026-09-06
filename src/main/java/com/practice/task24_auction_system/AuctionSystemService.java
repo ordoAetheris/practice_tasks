@@ -40,6 +40,14 @@ import java.util.*;
  * javac src/main/java/com/practice/task24_auction_system/AuctionSystemService.java
  * java -cp src/main/java com.practice.task24_auction_system.AuctionSystemService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — интервьюер додавливает, дрилить):</b></p>
+ * <ul>
+ *   <li><b>⭐ Конкурентные ставки (thread-safety):</b> база требует «ставка &gt; текущей», но под N потоками это LOST-UPDATE:
+ *       двое читают currentPrice=100, оба ставят 110, один затирается. Атомарно: CAS/лок на лот, проверка-и-запись под защитой. ← класс биллер-гонки, твоя зона.</li>
+ *   <li><b>Закрытие под гонкой:</b> ставка в момент finish() — принять или отклонить (граница).</li>
+ *   <li><b>Идемпотентность</b> повторной ставки (double-submit); <b>anti-sniping</b> (продлить при ставке в последние секунды).</li>
+ * </ul>
  */
 public class AuctionSystemService {
 

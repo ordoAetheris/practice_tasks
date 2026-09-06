@@ -38,6 +38,12 @@ import java.util.*;
  * javac src/main/java/com/practice/task30_text_analyzer/TextAnalyzerService.java
  * java -cp src/main/java com.practice.task30_text_analyzer.TextAnalyzerService
  * </pre>
+ *
+ * <p><b>УСЛОЖНЕНИЯ (сверх базы — дрилить):</b></p>
+ * <ul>
+ *   <li>В основном stateless → thread-safety только при общем накапливаемом состоянии; <b>топ-N частых слов через heap</b> (не полная сортировка), tie-break стабильный.</li>
+ *   <li>Edge: пустой текст, Unicode-буквы (Character.isLetter покрывает), очень большой текст → потоковая обработка (не грузить всё в память).</li>
+ * </ul>
  */
 public class TextAnalyzerService {
 
